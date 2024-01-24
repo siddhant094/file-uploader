@@ -1,4 +1,8 @@
-#root {
+.text-shadow {
+  text-shadow: 0 0 50px hsla(0, 0%, 0%, .4);
+}
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +43,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
