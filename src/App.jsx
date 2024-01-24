@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useRef } from 'react';
+
 import Papa from 'papaparse';
 import Menu from './components/Menu';
 import Tag from './components/Tag';
@@ -7,19 +9,26 @@ import { Audio, TailSpin } from 'react-loader-spinner';
 import './App.css';
 
 function App() {
+    const inputRef = useRef(null);
+
     const [loading, setLoading] = useState('default');
     const [data, setData] = useState([]);
 
     const buttonClickHandler = () => {
-        setLoading('loading');
-        setTimeout(() => {
-            setLoading('disabled');
-        }, 2000);
+        inputRef.current.click();
+        // setTimeout(() => {
+        //     setLoading('disabled');
+        // }, 2000);
     };
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        console.log('first');
+    const handleFileChange = (event) => {
+        const file = event.target.files && event.target.files[0];
+        if (!file || file.type != 'text/csv') {
+            event.target.value = null;
+            console.log('error parsing file');
+            return;
+        }
+        setLoading('loading');
         Papa.parse(file, {
             header: true,
             complete: (results) => {
@@ -27,6 +36,12 @@ function App() {
                 console.log(results);
             },
         });
+        setLoading('disabled');
+    };
+
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        console.log('first');
     };
 
     return (
@@ -52,18 +67,16 @@ function App() {
                     <div className='flex flex-col justify-center items-center'>
                         <div className='mt-36 bg-white w-[590px] h-full rounded-lg p-4 mb-28'>
                             <div className='border border-dashed h-[360px] rounded-lg w-full flex items-center justify-center flex-col gap-4'>
-                                <input
-                                    type='file'
-                                    accept='.csv'
-                                    onChange={handleFileUpload}
-                                />
                                 <img src='assets/excel.svg' alt='excel logo' />
                                 {loading != 'loading' && (
                                     <span className='text-[#999CA0] font-normal'>
                                         Drop your excel sheet here or{' '}
-                                        <span className='text-[#605BFF]'>
+                                        <button
+                                            className='text-[#605BFF]'
+                                            onClick={buttonClickHandler}
+                                        >
                                             browse
-                                        </span>
+                                        </button>
                                     </span>
                                 )}
                                 {loading == 'loading' && (
@@ -78,6 +91,14 @@ function App() {
                                     </div>
                                 )}
                             </div>
+                            <input
+                                style={{ display: 'none' }}
+                                ref={inputRef}
+                                accept='.csv'
+                                type='file'
+                                onChange={handleFileChange}
+                            />
+
                             <button
                                 disabled={loading == 'disabled'}
                                 // className='bg-[#605BFF] rounded-lg py-2 mt-2 flex w-full items-center justify-center line gap-2'
@@ -126,14 +147,12 @@ function App() {
                                     <span className=''>Selected Tags</span>
                                 </div>
 
-                                {data.length
+                                {data.length >= 1
                                     ? data.map((item) => {
-                                          console.log(item);
-                                          <Tag props={item} />;
+                                          //   console.log(item);
+                                          return <Tag props={item} />;
                                       })
                                     : null}
-                                <Tag />
-                                <Tag />
                             </div>
                         </div>
                     </div>

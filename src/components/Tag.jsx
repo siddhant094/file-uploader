@@ -1,11 +1,19 @@
 import React from 'react';
 
-const Tag = () => {
+const Tag = ({ props }) => {
+    // console.log(props);
     return (
         <div className='rounded-lg bg-white flex py-4 px-7 mx-4 mb-4 text-sm'>
-            <span className='flex items-center w-1/12'>01</span>
-            <span className='flex items-center w-3/12'>www.google.com</span>
-            <span className='flex items-center w-2/12'>prefixsample</span>
+            <span className='flex items-center w-1/12'>{props.id}</span>
+            <a
+                href={`https://${props.links}`}
+                target='_blank'
+                className='flex items-center w-3/12 text-[#5B93FF] underline'
+            >
+                {props.links}
+            </a>
+
+            <span className='flex items-center w-2/12'>{props.prefix}</span>
 
             <div className='w-3/12'>
                 <button
