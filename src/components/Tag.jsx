@@ -84,16 +84,12 @@ const Tag = ({ props }) => {
                 </ul>
             </div>
             <span className='flex gap-2'>
-                <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2'>
-                    <span className='font-[Figtree] text-white flex'>
-                        TAG 1
-                    </span>
+                <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2 justify-center items-center'>
+                    <span className='font-[Figtree] text-white'>TAG 1</span>
                     <img src='assets/cross.svg' alt='cross' />
                 </div>
-                <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2'>
-                    <span className='font-[Figtree] text-white w-fit'>
-                        TAG 2
-                    </span>
+                <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2 justify-center items-center'>
+                    <h1 className='font-[Figtree] text-white w-fit'>TAG 2</h1>
                     <img src='assets/cross.svg' alt='cross' />
                 </div>
             </span>

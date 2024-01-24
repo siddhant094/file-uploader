@@ -2,7 +2,7 @@ import React from 'react';
 
 const Menu = () => {
     return (
-        <div className='bg-white w-2/12'>
+        <div className='bg-white w-2/12 max-sm:hidden'>
             <div className='flex justify-center gap-4 my-14'>
                 <img src='assets/Subtract.svg' />
                 <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>

@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import Papa from 'papaparse';
 import Menu from './components/Menu';
 import Tag from './components/Tag';
-import { Audio, TailSpin } from 'react-loader-spinner';
+import { TailSpin } from 'react-loader-spinner';
 
 import './App.css';
 
@@ -16,9 +16,6 @@ function App() {
 
     const buttonClickHandler = () => {
         inputRef.current.click();
-        // setTimeout(() => {
-        //     setLoading('disabled');
-        // }, 2000);
     };
 
     const handleFileChange = (event) => {
@@ -65,7 +62,7 @@ function App() {
                         </div>
                     </div>
                     <div className='flex flex-col justify-center items-center'>
-                        <div className='mt-36 bg-white w-[590px] h-full rounded-lg p-4 mb-28'>
+                        <div className='mt-12 bg-white w-[590px] h-full rounded-lg p-4 mb-4'>
                             <div className='border border-dashed h-[360px] rounded-lg w-full flex items-center justify-center flex-col gap-4'>
                                 <img src='assets/excel.svg' alt='excel logo' />
                                 {loading != 'loading' && (
@@ -133,29 +130,29 @@ function App() {
                             </button>
                         </div>
                     </div>
-                    <div className='flex justify-center'>
-                        <div className='w-11/12'>
-                            <h1 className='font[Figtree] text-2xl font-semibold mb-12'>
-                                Uploads
-                            </h1>
-                            <div className='bg-[#F2F2F2] font-[Figtree] items-center justify-center mb-24 py-4 rounded-lg'>
-                                <div className='flex px-7 mx-4 mb-4 text-[#231F20] [&_span]:font-semibold text-sm'>
-                                    <span className='w-1/12'>SI No.</span>
-                                    <span className='w-3/12'>Links</span>
-                                    <span className='w-2/12'>Prefix</span>
-                                    <span className='w-3/12'>Add Tags</span>
-                                    <span className=''>Selected Tags</span>
-                                </div>
 
-                                {data.length >= 1
-                                    ? data.map((item) => {
-                                          //   console.log(item);
-                                          return <Tag props={item} />;
-                                      })
-                                    : null}
+                    {data.length ? (
+                        <div className='flex justify-center'>
+                            <div className='w-11/12'>
+                                <h1 className='mt-24 font[Figtree] text-2xl font-semibold mb-12'>
+                                    Uploads
+                                </h1>
+                                <div className='bg-[#F2F2F2] font-[Figtree] items-center justify-center mb-24 py-4 rounded-lg'>
+                                    <div className='flex px-7 mx-4 mb-4 text-[#231F20] [&_span]:font-semibold text-sm'>
+                                        <span className='w-1/12'>SI No.</span>
+                                        <span className='w-3/12'>Links</span>
+                                        <span className='w-2/12'>Prefix</span>
+                                        <span className='w-3/12'>Add Tags</span>
+                                        <span className=''>Selected Tags</span>
+                                    </div>
+                                    {data.map((item) => {
+                                        //   console.log(item);
+                                        return <Tag props={item} />;
+                                    })}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ) : null}
                 </div>
             </div>
         </div>
