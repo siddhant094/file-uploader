@@ -43,13 +43,25 @@ function App() {
 
     return (
         <div>
-            <div className='flex bg-neutral-50'>
+            <div className='flex bg-neutral-50 max-sm:bg-[#FAFAFB]'>
                 <Menu />
                 <div className='w-full'>
-                    <div className='flex pt-12 justify-between'>
-                        <span className='font-[Figtree] text-2xl font-semibold text-shadow pl-8'>
+                    <div className='flex max-sm:pt-7 max-sm:px-5 md:pt-12 justify-between max-sm:bg-red-300'>
+                        <img
+                            src='assets/burger.svg'
+                            alt='burger'
+                            srcset=''
+                            className='md:hidden'
+                        />
+                        <span className='max-sm:hidden font-[Figtree] text-2xl font-semibold text-shadow pl-8'>
                             Upload CSV
                         </span>
+                        <div className='md:hidden flex justify-center gap-4 my-14'>
+                            <img src='assets/Subtract.svg' />
+                            <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
+                                Base
+                            </span>
+                        </div>
                         <div className='flex items-center mr-8 gap-6'>
                             <span class='material-symbols-outlined'>
                                 notifications
@@ -62,8 +74,8 @@ function App() {
                         </div>
                     </div>
                     <div className='flex flex-col justify-center items-center'>
-                        <div className='mt-12 bg-white w-[590px] h-full rounded-lg p-4 mb-4'>
-                            <div className='border border-dashed h-[360px] rounded-lg w-full flex items-center justify-center flex-col gap-4'>
+                        <div className='border mt-12 bg-white md:w-[590px] max-sm:w-11/12 h-full rounded-lg p-4 mb-4'>
+                            <div className='border border-dashed h-[360px] rounded-lg md:w-full flex items-center justify-center flex-col gap-4'>
                                 <img src='assets/excel.svg' alt='excel logo' />
                                 {loading != 'loading' && (
                                     <span className='text-[#999CA0] font-normal'>
@@ -99,7 +111,7 @@ function App() {
                             <button
                                 disabled={loading == 'disabled'}
                                 // className='bg-[#605BFF] rounded-lg py-2 mt-2 flex w-full items-center justify-center line gap-2'
-                                className={`bg-[#605BFF] rounded-lg py-2 mt-2 flex w-full items-center justify-center line gap-2 ${
+                                className={`bg-[#605BFF] rounded-lg py-2 mt-2 flex max-sm:w-3/12 md:w-full items-center justify-center line gap-2 ${
                                     loading == 'disabled' ? 'opacity-40' : ''
                                 }`}
                                 onClick={buttonClickHandler}
