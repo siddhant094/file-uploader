@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 
 export default function DropdownComponent(props) {
     const [isVisible, setIsVisible] = useState(false);
-    const data = props.props.split(',');
-
+    let data = null;
+    if (props.props) {
+        data = props.props.split(',');
+    } else {
+        data = null;
+    }
     return (
         <div className='inline-flex bg-white border rounded-md'>
             <a
@@ -35,10 +39,10 @@ export default function DropdownComponent(props) {
                         />
                     </svg>
                 </button>
-                {isVisible && (
+                {isVisible && data != null && (
                     <div className='absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg'>
                         <div className='p-2'>
-                            <a
+                            {/* <a
                                 // href='#'
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -47,19 +51,20 @@ export default function DropdownComponent(props) {
                                 className='block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 cursor-pointer'
                             >
                                 {item.trim()}
-                            </a>
-                            {data.map((item) => (
-                                <a
-                                    // href='#'
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setIsVisible(false);
-                                    }}
-                                    className='block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 cursor-pointer'
-                                >
-                                    {item.trim()}
-                                </a>
-                            ))}
+                            </a> */}
+                            {data != null &&
+                                data.map((item) => (
+                                    <a
+                                        // href='#'
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setIsVisible(false);
+                                        }}
+                                        className='block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 cursor-pointer'
+                                    >
+                                        {item.trim()}
+                                    </a>
+                                ))}
                         </div>
                     </div>
                 )}
