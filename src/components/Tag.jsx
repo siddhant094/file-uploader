@@ -67,7 +67,11 @@ const Tag = ({ props }) => {
                     </ul>
                 </div>
                 <span className='flex gap-2'>
-                    {selected != null &&
+                    {/* <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2 justify-center items-center'> */}
+                    {/* <span className='font-[Figtree] text-white'></span> */}
+                    {/* <img src='assets/cross.svg' alt='cross' /> */}
+                    {/* </div> */}
+                    {/* {selected != null &&
                         selected.map((item) => (
                             <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2 justify-center items-center'>
                                 <span className='font-[Figtree] text-white'>
@@ -75,7 +79,7 @@ const Tag = ({ props }) => {
                                 </span>
                                 <img src='assets/cross.svg' alt='cross' />
                             </div>
-                        ))}
+                        ))} */}
                 </span>
             </div>
         </div>
