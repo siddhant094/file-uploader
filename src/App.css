@@ -1,6 +1,13 @@
-.text-shadow {
-  text-shadow: 0 0 50px hsla(0, 0%, 0%, .4);
+.shadow-header {
+  text-shadow: 1px 4px 4px rgb(185, 184, 184);
 }
+
+.bg-gradient {
+  border-radius: 0px 5px 5px 0px;
+  opacity: 1;
+  background: linear-gradient(90deg, #d9d9f7 0%, rgba(172, 169, 255, 0.00) 21.25%);
+}
+
 
 /* #root {
   max-width: 1280px;

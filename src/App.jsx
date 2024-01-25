@@ -3,12 +3,25 @@ import { useRef } from 'react';
 
 import Papa from 'papaparse';
 import Menu from './components/Menu';
+import DropdownComponent from './components/DropdownComponent';
+import Navbar from './components/Navbar';
 import Tag from './components/Tag';
 import { TailSpin } from 'react-loader-spinner';
 
 import './App.css';
 
 function App() {
+    const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+
+    const openDrawerHandler = () => {
+        setDrawerIsOpen(true);
+    };
+
+    const closeDrawerHandler = () => {
+        setDrawerIsOpen(false);
+    };
+
+    // dadads
     const inputRef = useRef(null);
 
     const [loading, setLoading] = useState('default');
@@ -28,6 +41,9 @@ function App() {
         setLoading('loading');
         Papa.parse(file, {
             header: true,
+            transformHeader: function (h) {
+                return h.replace(' ', '');
+            },
             complete: (results) => {
                 setData(results.data);
                 console.log(results);
@@ -43,26 +59,31 @@ function App() {
 
     return (
         <div>
+            {/* yahi hai */}
             <div className='flex bg-neutral-50 max-sm:bg-[#FAFAFB]'>
                 <Menu />
+                {/* <Navbar /> */}
+
                 <div className='w-full'>
-                    <div className='flex max-sm:pt-7 max-sm:px-5 md:pt-12 justify-between max-sm:bg-red-300'>
-                        <img
-                            src='assets/burger.svg'
-                            alt='burger'
-                            srcset=''
-                            className='md:hidden'
-                        />
-                        <span className='max-sm:hidden font-[Figtree] text-2xl font-semibold text-shadow pl-8'>
-                            Upload CSV
-                        </span>
-                        <div className='md:hidden flex justify-center gap-4 my-14'>
-                            <img src='assets/Subtract.svg' />
-                            <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
-                                Base
+                    <div className='flex max-sm:py-5 max-sm:px-5 md:pt-12 justify-between max-sm:bg-white'>
+                        <div className='flex gap-4'>
+                            <img
+                                src='assets/burger.svg'
+                                alt='burger'
+                                srcset=''
+                                className='md:hidden'
+                            />
+                            <span className='max-sm:hidden font-[Figtree] text-2xl font-semibold text-shadow pl-8 shadow-header'>
+                                Upload CSV
                             </span>
+                            <div className='md:hidden flex justify-center gap-4'>
+                                <img src='assets/Subtract.svg' />
+                                <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
+                                    Base
+                                </span>
+                            </div>
                         </div>
-                        <div className='flex items-center mr-8 gap-6'>
+                        <div className='flex items-center md:mr-8 gap-6'>
                             <span class='material-symbols-outlined'>
                                 notifications
                             </span>
@@ -74,15 +95,20 @@ function App() {
                         </div>
                     </div>
                     <div className='flex flex-col justify-center items-center'>
-                        <div className='border mt-12 bg-white md:w-[590px] max-sm:w-11/12 h-full rounded-lg p-4 mb-4'>
-                            <div className='border border-dashed h-[360px] rounded-lg md:w-full flex items-center justify-center flex-col gap-4'>
+                        <span className='self-start font-[Figtree] md:hidden text-[#030229] text-2xl font-semibold pl-8 mt-7 mb-6'>
+                            Upload CSV
+                        </span>
+                        <div className='md:mt-12 bg-white md:w-[590px] max-sm:w-11/12 h-full rounded-lg p-4 md:mb-4'>
+                            <div className='text-center border border-dashed h-[360px] rounded-lg md:w-full flex items-center justify-center flex-col gap-4'>
                                 <img src='assets/excel.svg' alt='excel logo' />
+                                {/* <DropdownComponent /> */}
                                 {loading != 'loading' && (
                                     <span className='text-[#999CA0] font-normal'>
                                         Drop your excel sheet here or{' '}
                                         <button
                                             className='text-[#605BFF]'
                                             onClick={buttonClickHandler}
+                                            disabled={loading == 'disabled'}
                                         >
                                             browse
                                         </button>
@@ -111,7 +137,7 @@ function App() {
                             <button
                                 disabled={loading == 'disabled'}
                                 // className='bg-[#605BFF] rounded-lg py-2 mt-2 flex w-full items-center justify-center line gap-2'
-                                className={`bg-[#605BFF] rounded-lg py-2 mt-2 flex max-sm:w-3/12 md:w-full items-center justify-center line gap-2 ${
+                                className={`bg-[#605BFF] rounded-lg py-2 mt-2 flex w-full items-center justify-center line gap-2 ${
                                     loading == 'disabled' ? 'opacity-40' : ''
                                 }`}
                                 onClick={buttonClickHandler}
