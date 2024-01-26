@@ -13,7 +13,7 @@ export default function DropdownComponent(props) {
             <a
                 // href='#'
                 onClick={() => setIsVisible(!isVisible)}
-                className='px-4 py-2 text-sm text-[#231F20] rounded-l-md cursor-pointer'
+                className='px-4 py-1 text-sm text-[#231F20] rounded-l-md cursor-pointer'
             >
                 Select Tags
             </a>

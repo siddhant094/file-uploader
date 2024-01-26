@@ -8,25 +8,26 @@ const Tag = ({ props }) => {
         selected = props.selectedtags.split(',');
     }
     return (
-        <div className='rounded-lg md:bg-white flex py-4 px-7 mx-4 mb-4 text-sm max-sm:w-full'>
-            <span className='flex items-center w-1/12'>{props.id}</span>
-            <div className='flex max-sm:bg-white rounded-lg max-sm:overflow-x-scroll w-full'>
+        <div
+            className='rounded-lg md:bg-white grid grid-flow-col gap-4 py-4 px-7 mx-4 mb-4 max-sm:pl-0 max-sm:ml-0 text-sm max-sm:overflow-x-scroll'
+            key={props.id}
+        >
+            <span className='grid items-center'>{props.id}</span>
+            <div className='grid grid-flow-col grid-cols-4 gap-2 max-sm:bg-white rounded-lg max-sm:w-[1460px] max-sm:py-4 max-sm:px-7'>
                 <a
                     href={`https://${props.links}`}
                     target='_blank'
-                    className='flex items-center w-3/12 text-[#5B93FF] underline max-sm:w-60'
+                    className='grid items-center text-[#5B93FF] underline'
                 >
                     {props.links}
                 </a>
-                <span className='flex items-center w-2/12 max-sm:w-40 max-sm:mr-6'>
-                    {props.prefix}
-                </span>
-                <div className='w-3/12 max-sm:w-72'>
+                <span className='grid items-center w-2/12'>{props.prefix}</span>
+                <div className='flex items-center'>
                     <DropdownComponent props={props.selecttags} />
                 </div>
-                <div
+                {/* <div
                     id='dropdown'
-                    className='z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700'
+                    className='z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700'
                 >
                     <ul
                         className='py-2 text-sm text-gray-700 dark:text-gray-200'
@@ -65,12 +66,8 @@ const Tag = ({ props }) => {
                             </a>
                         </li>
                     </ul>
-                </div>
-                <span className='flex gap-2 flex-wrap'>
-                    {/* <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2 justify-center items-center'>
-                        <span className='font-[Figtree] text-white'></span>
-                        <img src='assets/cross.svg' alt='cross' />
-                    </div> */}
+                </div> */}
+                <span className='flex gap-2 flex-wrap max-sm:w-96 md:w-52'>
                     {selected != null &&
                         selected.map((item) => (
                             <div className='bg-[#605BFF] rounded flex gap-1 p-1 pl-2 justify-center items-center'>

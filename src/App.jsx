@@ -21,7 +21,6 @@ function App() {
         setDrawerIsOpen(false);
     };
 
-    // dadads
     const inputRef = useRef(null);
 
     const [loading, setLoading] = useState('default');
@@ -58,7 +57,7 @@ function App() {
     };
 
     return (
-        <div>
+        <div className='bg-neutral-50 min-h-screen'>
             {/* yahi hai */}
             <div className='flex bg-neutral-50 max-sm:bg-[#FAFAFB]'>
                 <Menu />
@@ -175,13 +174,15 @@ function App() {
                                 <h1 className='mt-24 font[Figtree] text-2xl font-semibold mb-12'>
                                     Uploads
                                 </h1>
-                                <div className='bg-[#F2F2F2] font-[Figtree] items-center justify-center mb-24 py-4 rounded-lg'>
-                                    <div className='flex px-7 mx-4 mb-4 text-[#231F20] [&_span]:font-semibold text-sm'>
-                                        <span className='w-1/12'>SI No.</span>
-                                        <span className='w-3/12'>Links</span>
-                                        <span className='w-2/12'>Prefix</span>
-                                        <span className='w-3/12'>Add Tags</span>
-                                        <span className=''>Selected Tags</span>
+                                <div className='bg-[#F2F2F2] font-[Figtree] items-center justify-center mb-24 py-4 rounded-lg px-5  '>
+                                    <div className='grid grid-flow-col grid-cols-5 gap-4 px-7 mx-4 mb-4 max-sm:pl-0 max-sm:ml-0 text-[#231F20] [&_span]:font-semibold text-sm'>
+                                        <span className=''>SI No.</span>
+                                        <span className=''>Links</span>
+                                        <span className=''>Prefix</span>
+                                        <span className=''>Add Tags</span>
+                                        <span className='md:w-52'>
+                                            Selected Tags
+                                        </span>
                                     </div>
                                     {data.map((item) => {
                                         //   console.log(item);
