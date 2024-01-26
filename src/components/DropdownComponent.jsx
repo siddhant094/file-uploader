@@ -42,16 +42,6 @@ export default function DropdownComponent(props) {
                 {isVisible && data != null && (
                     <div className='absolute right-0 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg'>
                         <div className='p-2'>
-                            {/* <a
-                                // href='#'
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setIsVisible(false);
-                                }}
-                                className='block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 cursor-pointer'
-                            >
-                                {item.trim()}
-                            </a> */}
                             {data != null &&
                                 data.map((item) => (
                                     <a

@@ -3,24 +3,17 @@ import { useRef } from 'react';
 
 import Papa from 'papaparse';
 import Menu from './components/Menu';
-import DropdownComponent from './components/DropdownComponent';
+// import DropdownComponent from './components/DropdownComponent';
 import Navbar from './components/Navbar';
 import Tag from './components/Tag';
 import { TailSpin } from 'react-loader-spinner';
 
+// import { CSSTransition } from 'react-transition-group';
+
 import './App.css';
+import Uploads from './components/Uploads';
 
 function App() {
-    const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-
-    const openDrawerHandler = () => {
-        setDrawerIsOpen(true);
-    };
-
-    const closeDrawerHandler = () => {
-        setDrawerIsOpen(false);
-    };
-
     const inputRef = useRef(null);
 
     const [loading, setLoading] = useState('default');
@@ -51,48 +44,13 @@ function App() {
         setLoading('disabled');
     };
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        console.log('first');
-    };
-
     return (
         <div className='bg-neutral-50 min-h-screen'>
-            {/* yahi hai */}
             <div className='flex bg-neutral-50 max-sm:bg-[#FAFAFB]'>
-                <Menu />
-                {/* <Navbar /> */}
-
+                <Menu class='w-2/12 max-sm:hidden' />
                 <div className='w-full'>
-                    <div className='flex max-sm:py-5 max-sm:px-5 md:pt-12 justify-between max-sm:bg-white'>
-                        <div className='flex gap-4'>
-                            <img
-                                src='assets/burger.svg'
-                                alt='burger'
-                                srcset=''
-                                className='md:hidden'
-                            />
-                            <span className='max-sm:hidden font-[Figtree] text-2xl font-semibold text-shadow pl-8 shadow-header'>
-                                Upload CSV
-                            </span>
-                            <div className='md:hidden flex justify-center gap-4'>
-                                <img src='assets/Subtract.svg' />
-                                <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
-                                    Base
-                                </span>
-                            </div>
-                        </div>
-                        <div className='flex items-center md:mr-8 gap-6'>
-                            <span class='material-symbols-outlined'>
-                                notifications
-                            </span>
-                            <img
-                                src='assets/avatar.png'
-                                alt='avatar'
-                                className='rounded-full h-fit max-w-fit'
-                            />
-                        </div>
-                    </div>
+                    <Navbar />
+
                     <div className='flex flex-col justify-center items-center'>
                         <span className='self-start font-[Figtree] md:hidden text-[#030229] text-2xl font-semibold pl-8 mt-7 mb-6'>
                             Upload CSV
@@ -167,31 +125,7 @@ function App() {
                             </button>
                         </div>
                     </div>
-
-                    {data.length ? (
-                        <div className='flex justify-center'>
-                            <div className='w-11/12'>
-                                <h1 className='mt-24 font[Figtree] text-2xl font-semibold mb-12'>
-                                    Uploads
-                                </h1>
-                                <div className='bg-[#F2F2F2] font-[Figtree] items-center justify-center mb-24 py-4 rounded-lg px-5  '>
-                                    <div className='grid grid-flow-col grid-cols-5 gap-4 px-7 mx-4 mb-4 max-sm:pl-0 max-sm:ml-0 text-[#231F20] [&_span]:font-semibold text-sm'>
-                                        <span className=''>SI No.</span>
-                                        <span className=''>Links</span>
-                                        <span className=''>Prefix</span>
-                                        <span className=''>Add Tags</span>
-                                        <span className='md:w-52'>
-                                            Selected Tags
-                                        </span>
-                                    </div>
-                                    {data.map((item) => {
-                                        //   console.log(item);
-                                        return <Tag props={item} />;
-                                    })}
-                                </div>
-                            </div>
-                        </div>
-                    ) : null}
+                    {data.length ? <Uploads props={data} /> : null}
                 </div>
             </div>
         </div>

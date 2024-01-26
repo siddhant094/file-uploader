@@ -1,148 +1,66 @@
-'use client';
+import React from 'react';
+import { useState } from 'react';
+import Menu from './Menu';
+// import './App.css';
 
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+const Navbar = () => {
+    const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
-// import Image from 'next/image';
-// import clogo from '../../../public/assets/notion icon.webp';
-
-// interface Props {
-//     /**
-//      * Injected by the documentation to work in an iframe.
-//      * You won't need it on your project.
-//      */
-//     window?: () => Window;
-// }
-
-const drawerWidth = 240;
-const navItems = ['Product', 'Download', 'Solutions', 'Resources', 'Pricing'];
-
-export default function DrawerAppBar(props) {
-    const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-
-    const handleDrawerToggle = () => {
-        setMobileOpen((prevState) => !prevState);
+    const openDrawerHandler = () => {
+        setDrawerIsOpen(true);
     };
 
-    const drawer = (
-        <Box
-            onClick={handleDrawerToggle}
-            sx={{ textAlign: 'center' }}
-            className='md:hidden'
-        >
-            {/* <Typography variant='h6' sx={{ my: 2 }}>
-                Notion
-            </Typography> */}
-            <Divider />
-            <List>
-                {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton
-                            sx={{
-                                textAlign: 'center',
-                                textTransform: 'lowercase',
-                            }}
-                        >
-                            <ListItemText primary={item} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    );
-
-    const container =
-        window !== undefined ? () => window().document.body : undefined;
+    const closeDrawerHandler = () => {
+        setDrawerIsOpen(false);
+    };
 
     return (
-        <Box
-            sx={{ display: 'flex' }}
-            className='bg-white border border-b-2 md:hidden'
-        >
-            <CssBaseline />
-            <AppBar component='nav' className='bg-white shadow-none md:hidden'>
-                <Toolbar className='justify-between bg-inherit md:hidden'>
-                    {/* <image src={clogo} alt='img' width={50} height={50} /> */}
-                    <span className='text-[#050505] font-bold text-base m-auto md:hidden'>
-                        Notion
-                    </span>
-                    <IconButton
-                        color='info'
-                        aria-label='open drawer'
-                        edge='start'
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant='h6'
-                        component='div'
-                        sx={{
-                            flexGrow: 1,
-                            display: { xs: 'none', sm: 'block' },
-                        }}
-                    ></Typography>
-                    <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {navItems.map((item) => (
-                            <Button
-                                key={item}
-                                sx={{
-                                    color: '#000',
-                                    textTransform: 'capitalize',
-                                    fontSize: '16px',
-                                }}
-                            >
-                                {item}
-                            </Button>
-                        ))}
-                        <span className='text-black ml-80'>
-                            Request a {'Demo      '}
-                        </span>
-                        <span className='text-black mx-5'>Log In</span>
-                        <Button
-                            variant='contained'
-                            className='bg-black text-white normal-case text-base font-medium hover:bg-[#333] btn flex-grow-0 justify-center px-4 py-1'
-                        >
-                            Get Notion Free
-                        </Button>
-                    </Box>
-                </Toolbar>
-            </AppBar>
-            <nav className='border border-b-2'>
-                <Drawer
-                    container={container}
-                    variant='temporary'
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': {
-                            boxSizing: 'border-box',
-                            width: drawerWidth,
-                        },
-                    }}
+        <div>
+            {drawerIsOpen && (
+                <div
+                    onClick={closeDrawerHandler}
+                    className='backdrop w-screen h-screen z-10'
+                ></div>
+            )}
+            {drawerIsOpen && (
+                <div
+                    className='bg-white w-4/6 h-screen z-20 fixed rounded-r-2xl'
+                    // onClick={closeDrawerHandler}
                 >
-                    {drawer}
-                </Drawer>
-            </nav>
-        </Box>
+                    <Menu class='' showClose handleClose={closeDrawerHandler} />
+                </div>
+            )}
+            <div className='flex max-sm:py-5 max-sm:px-5 md:pt-12 justify-between max-sm:bg-white'>
+                <div className='flex gap-4'>
+                    <button onClick={openDrawerHandler}>
+                        <img
+                            src='assets/burger.svg'
+                            alt='burger'
+                            srcset=''
+                            className='md:hidden'
+                        />
+                    </button>
+                    <span className='max-sm:hidden font-[Figtree] text-2xl font-semibold text-shadow pl-8 shadow-header'>
+                        Upload CSV
+                    </span>
+                    <div className='md:hidden flex justify-center gap-4'>
+                        <img src='assets/Subtract.svg' />
+                        <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
+                            Base
+                        </span>
+                    </div>
+                </div>
+                <div className='flex items-center md:mr-8 gap-6'>
+                    <span class='material-symbols-outlined'>notifications</span>
+                    <img
+                        src='assets/avatar.png'
+                        alt='avatar'
+                        className='rounded-full h-fit max-w-fit'
+                    />
+                </div>
+            </div>
+        </div>
     );
-}
+};
+
+export default Navbar;

@@ -9,11 +9,14 @@ const Tag = ({ props }) => {
     }
     return (
         <div
-            className='rounded-lg md:bg-white grid grid-flow-col gap-4 py-4 px-7 mx-4 mb-4 max-sm:pl-0 max-sm:ml-0 text-sm max-sm:overflow-x-scroll'
+            // className='rounded-lg md:bg-white grid grid-flow-col gap-4 py-4 px-7 mx-4 mb-4 max-sm:pl-0 max-sm:ml-0 text-sm max-sm:overflow-x-scroll'
+            className='rounded-lg md:bg-white grid grid-flow-col gap-4 py-4 px-7 mx-4 mb-4 max-sm:pl-0 max-sm:ml-0 text-sm'
             key={props.id}
         >
-            <span className='grid items-center'>{props.id}</span>
-            <div className='grid grid-flow-col grid-cols-4 gap-2 max-sm:bg-white rounded-lg max-sm:w-[1460px] max-sm:py-4 max-sm:px-7'>
+            <span className='grid items-center max-sm:w-14 max-sm:absolute max-sm:bg-[#F2F2F2] max-sm:h-16 max-sm:pl-5 max-sm:z-10'>
+                {props.id}
+            </span>
+            <div className='grid grid-flow-col grid-cols-4 gap-2 max-sm:bg-white rounded-lg max-sm:w-[1460px] max-sm:py-4 max-sm:px-7 max-sm:ml-16'>
                 <a
                     href={`https://${props.links}`}
                     target='_blank'

@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
 
-const Menu = () => {
+const Menu = (props) => {
     return (
-        <div className='bg-white w-2/12 max-sm:hidden'>
-            <div className='flex justify-center gap-4 my-14'>
-                <img src='assets/Subtract.svg' />
-                <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
-                    Base
-                </span>
+        <div className={`bg-white md:min-h-screen ${props.class}`}>
+            <div className='flex justify-around gap-4 my-14'>
+                <div className='flex justify-center gap-4'>
+                    <img src='assets/Subtract.svg' />
+                    <span className='font-[Nunito] text-[#030229] text-2xl font-semibold flex justify-center items-center'>
+                        Base
+                    </span>
+                </div>
+                {props.showClose && (
+                    <button onClick={props.handleClose}>
+                        <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            width='40'
+                            height='40'
+                            viewBox='0 0 40 40'
+                            fill='none'
+                        >
+                            <path
+                                d='M25.3424 14.6568L19.6855 20.3137M19.6855 20.3137L14.0287 14.6568M19.6855 20.3137L14.0287 25.9706M19.6855 20.3137L25.3424 25.9706'
+                                stroke='#999CA0'
+                                stroke-width='1.5'
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
+                            />
+                        </svg>
+                    </button>
+                )}
             </div>
             <div className='flex flex-col [&_div]:py-4 [&_div]:pl-6'>
                 <div className='flex font-[Nunito] font-semibold text-[#9A9AA9] gap-4'>
