@@ -38,10 +38,13 @@ function App() {
             },
             complete: (results) => {
                 setData(results.data);
-                console.log(results);
+                setTimeout(() => {
+                    setLoading('disabled');
+                }, 3000);
+                // console.log(results);
             },
         });
-        setLoading('disabled');
+        // setLoading('disabled');
     };
 
     return (
@@ -125,7 +128,9 @@ function App() {
                             </button>
                         </div>
                     </div>
-                    {data.length ? <Uploads props={data} /> : null}
+                    {data.length && loading != 'loading' ? (
+                        <Uploads props={data} />
+                    ) : null}
                 </div>
             </div>
         </div>
